@@ -13,7 +13,7 @@ public:
     SPart(int, int, int, int, vector<Numeric *>);
     virtual void draw() override;
     virtual void handle(genv::event) override;
-    virtual void check_data();
+    virtual vector<Numeric *> check_data();
 
 };
 
