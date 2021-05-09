@@ -5,6 +5,8 @@
 #include "numericwidget.hpp"
 #include <vector>
 
+using namespace std;
+
 class SPart: public Widget{
 protected:
     vector<Numeric *> _data;
