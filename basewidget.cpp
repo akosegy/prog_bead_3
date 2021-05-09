@@ -19,3 +19,11 @@ void Widget::select(){
 void Widget::deselect(){
     _selected = false;
 }
+
+void Widget::get_x(){
+    return _x;
+}
+
+void Widget::get_y(){
+    return _y;
+}

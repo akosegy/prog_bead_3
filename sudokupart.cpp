@@ -7,7 +7,7 @@
 using namespace genv;
 using namespace std;
 
-SPart::SPart(int x, int y, int height, int minimum, vector<Numeric *> data): Widget(x, y, width, height), _data(data){
+SPart::SPart(int x, int y, int height, int width, vector<Numeric *> data): Widget(x, y, width, height), _data(data){
 
 }
 

@@ -14,6 +14,8 @@ public:
     virtual void handle(genv::event) = 0;
     virtual void select();
     virtual void deselect();
+    virtual int get_x();
+    virtual int get_y();
 
 };
 
