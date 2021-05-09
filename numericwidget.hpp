@@ -6,6 +6,7 @@
 
 class Numeric : public Widget {
 protected:
+    int _r, _g, _b;
     bool _hide_buttons;
     int _buttonsize;
     int _counter;
@@ -22,6 +23,8 @@ public:
     virtual void add(int);
     virtual void give(int);
     virtual int get_saveable();
+    virtual void set_color(int, int, int);
+    virtual void set_value(int);
 };
 
 

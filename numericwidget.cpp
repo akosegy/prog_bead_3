@@ -9,6 +9,9 @@ Numeric::Numeric(int x, int y,int width, int height,int minimum, int maximum, bo
     int button_x = x + width - height/2;
     string text_up;
     string text_down;
+    _r = 255;
+    _g = 255;
+    _b = 255;
     if (_hide_buttons){
         _buttonsize = 0;
 
@@ -51,7 +54,7 @@ void Numeric::draw(){
     text_pos_y = _y + (_height / 2) + (gout.cascent() / 2);
 
     gout << color(0,0,0) << move_to(_x, _y )<< box(_width - _buttonsize, _height);
-    gout << color(255,255,255) << move_to(_x+1, _y+1) << box((_width - _buttonsize)-2, _height-2) << move_to(text_pos_x, text_pos_y) << color(0,0,0) << text(ss.str());
+    gout << color(_r,_g,_b) << move_to(_x+1, _y+1) << box((_width - _buttonsize)-2, _height-2) << move_to(text_pos_x, text_pos_y) << color(0,0,0) << text(ss.str());
 
     if (_buttonsize>0){
         _up->draw();
@@ -73,6 +76,18 @@ void Numeric::give(int a){
 
 int Numeric::get_saveable(){
     return _counter;
+}
+
+void Numeric::set_color(int r, int g, int b){
+    _r = r;
+    _g = g;
+    _b = b;
+}
+
+void Numeric::set_value(int new_value){
+    if (new_value >= _minimum && new_value <= _maximum){
+        _counter = new_value;
+    }
 }
 
 void Numeric::handle(event ev){
@@ -102,6 +117,8 @@ void Numeric::handle(event ev){
                 if (((_counter / 10) >= _minimum && _counter > 0) || ((_counter / 10) <= _maximum && _counter < 0)){
                         _counter = _counter / 10;
                 }
+            }else if (ev.keycode == key_enter){
+                deselect();
             }
         }
     }

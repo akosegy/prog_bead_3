@@ -1,6 +1,3 @@
-#include "graphics.hpp"
-#include "basewidget.hpp"
-#include "menuwindow.hpp"
 #include "application.hpp"
 
 using namespace std;
