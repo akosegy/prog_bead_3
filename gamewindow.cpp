@@ -57,7 +57,7 @@ void Game::_generate_columns(vector<Numeric *>){
     int height;
     int width;
 
-    for (int i = 0; i < 9; i++){                                                             //to do
+    for (int i = 0; i < 9; i++){
         vector<Numeric *> par;
 
         for (int j = 0; j < 9; j++){
@@ -72,7 +72,7 @@ void Game::_generate_columns(vector<Numeric *>){
     }
 }
 
-void Game::_generate_squares(vector<Numeric *>){                                             //to do
+void Game::_generate_squares(vector<Numeric *>){
     int x;
     int y;
     int height;
@@ -92,6 +92,59 @@ void Game::_generate_squares(vector<Numeric *>){                                
             width = par[0]->get_x() - x;
             height = par[0]->get_y() - y;
             _squares.push_back(new SPart(x, y, height, width, par));
+        }
+    }
+}
+
+bool _handle_mistakes(){
+    vector<Numeric *> mistakes;
+    for (int i = 0; i < 9; i++){
+        mistakes.push_back(_rows[i]->check_data());
+        mistakes.push_back(_columns[i]->check_data());
+        mistakes.push_back(_squares[i]->check_data());
+    }
+    int n = mistakes.size();
+    while (n >= 0){
+        if (find(mistakes.begin(), mistakes.end(), mistakes[n]) != n){
+            mistakes.erase(mistakes.begin()+n);
+        }
+        n--;
+    }
+    for(int i = 0; i < _cells.size(); i++){
+        _cells[i]->set_color(0,0,0);
+    }
+    if (mistakes.empty){
+        return true;
+    }else{
+        for(int i = 0; i < mistakes.size(); i++){
+            mistakes[i]->set_color(255,0,0);
+        }
+        return false;
+    }
+}
+
+void Game::draw(){
+    for (int i = 0; i < _cells.size(); i++){
+        _cells[i]->draw();
+    }
+}
+
+void Game::handle(event ev){
+    for(int i = 0; i < _cells.size(); i++){
+        _cells[i]->handle(ev);
+    }
+
+    if (ev.type == ev_mouse) {
+        if (ev.button == btn_left){
+            if (_handle_mistakes()){
+                //victory();
+            }
+        }
+    }else if (ev.type == ev_key){
+        if (ev.keycode == key_enter){
+            if (_handle_mistakes()){
+                //victory();
+            }
         }
     }
 }

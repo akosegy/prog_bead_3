@@ -46,6 +46,17 @@ void Numeric::draw(){
     int font_width;
     int text_pos_x;
     int text_pos_y;
+    int back_r, back_g, back_b;
+
+    if(_selected){
+        back_r = 0;
+        back_g = 0;
+        back_b = 0;
+    }else{
+        back_r = 50;
+        back_g = 50;
+        back_b = 50;
+    }
 
     ss << _counter;
 
@@ -53,8 +64,10 @@ void Numeric::draw(){
     text_pos_x = _x + (_width / 2) - (font_width / 2);
     text_pos_y = _y + (_height / 2) + (gout.cascent() / 2);
 
+
     gout << color(0,0,0) << move_to(_x, _y )<< box(_width - _buttonsize, _height);
-    gout << color(_r,_g,_b) << move_to(_x+1, _y+1) << box((_width - _buttonsize)-2, _height-2) << move_to(text_pos_x, text_pos_y) << color(0,0,0) << text(ss.str());
+    gout << color(back_r,back_g,back_b) << move_to(_x+1, _y+1) << box((_width - _buttonsize)-2, _height-2);
+    gout << move_to(text_pos_x, text_pos_y) << color(_r,_g,_b) << text(ss.str());
 
     if (_buttonsize>0){
         _up->draw();

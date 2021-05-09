@@ -18,6 +18,7 @@ protected:
     virtual void _generate_rows(vector<Numeric *>);
     virtual void _generate_columns(vector<Numeric *>);
     virtual void _generate_squares(vector<Numeric *>);
+    virtual bool _handle_mistakes();
 public:
     Game(string, vector<int>);
     virtual void draw() override;

@@ -34,11 +34,8 @@ void SPart::handle(event ev){
         if (ev.button == btn_left){
             if (is_present(ev.pos_x, ev.pos_y)){
                 select();
-                _up->handle(ev);
-                _down->handle(ev);
             }else{
                 deselect();
-                //check_data();
             }
         }
     }else if (_selected){
