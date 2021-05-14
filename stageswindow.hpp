@@ -15,7 +15,9 @@ protected:
     Button * _stage_2_btn;
     Button * _stage_3_btn;
 
-    void _btn_function;
+    string _stage_1_data;
+    string _stage_2_data;
+    string _stage_3_data;
 public:
     Stages_menu(string title, Application parent);
     virtual void draw() override;

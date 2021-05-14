@@ -15,7 +15,6 @@ protected:
     Button * _submit_btn;
     Text * _textfield;
 
-    void _submit;
 public:
     Open_window(string title, Application parent);
     virtual void draw() override;

@@ -139,13 +139,13 @@ void Game::handle(event ev){
     if (ev.type == ev_mouse) {
         if (ev.button == btn_left){
             if (_handle_mistakes()){
-                _parent->victory();
+                _parent->set_window(VICTORY);
             }
         }
     }else if (ev.type == ev_key){
         if (ev.keycode == key_enter){
             if (_handle_mistakes()){
-                _parent->victory();
+                _parent->set_window(VICTORY);
             }
         }
     }

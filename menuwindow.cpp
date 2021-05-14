@@ -12,12 +12,13 @@ using namespace genv;
 
 Main_menu::Main_menu(string title, Application parent): Window(title, parent){
 
-    _stages_btn = new Button(50, 50, 100, 50, "Button",
+    _stages_btn = new Button(50, 50, 100, 50, "Stages",
                        [=](){_parent->show_stages();});
 
-    _open_btn = new Button(50, 50, 100, 50, "Button",
-                       [=](){_parent->open();});
-    _exit_btn = new Button(50, 50, 100, 50, "Button",
+    _open_btn = new Button(50, 50, 100, 101, "Open file",
+                       [=](){_parent->set_window(OPEN);});
+
+    _exit_btn = new Button(50, 50, 100, 152, "Exit",
                        [=](){_parent->stop();});
 }
 
