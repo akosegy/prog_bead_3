@@ -15,7 +15,7 @@ Open_window::Open_window(string title, function<void()> submit_func): Window(tit
     _textfield = new Text(250, 50, 10, 50, "Please type the path here", true);
 
     _submit_btn = new Button(50, 50, 270, 50, "Submit",
-                       [=](){submit_func;});
+                       [=](){submit_func();});
 }
 
 string Open_window::get_textfield_text(){

@@ -4,6 +4,7 @@
 #include "gamewindow.hpp"
 #include "graphics.hpp"
 #include <vector>
+#include <functional>
 #include <algorithm>
 
 using namespace std;
@@ -102,13 +103,13 @@ void Game::_generate_squares(vector<Numeric *> data){
 bool Game::_handle_mistakes(){
     vector<Numeric *> mistakes;
     for (int i = 0; i < 9; i++){
-        mistakes.push_back(_rows[i]->check_data());
-        mistakes.push_back(_columns[i]->check_data());
-        mistakes.push_back(_squares[i]->check_data());
+        mistakes.insert(mistakes.end(), (_rows[i]->check_data()).begin(), (_rows[i]->check_data()).end());
+        mistakes.insert(mistakes.end(), (_columns[i]->check_data()).begin(), (_columns[i]->check_data()).end());
+        mistakes.insert(mistakes.end(), (_squares[i]->check_data()).begin(), (_squares[i]->check_data()).end());
     }
     int n = mistakes.size();
     while (n >= 0){
-        if (find(mistakes.begin(), mistakes.end(), mistakes[n]) != n){
+        if (find(mistakes.begin(), mistakes.end(), mistakes[n]) != mistakes.begin()+n){
             mistakes.erase(mistakes.begin()+n);
         }
         n--;

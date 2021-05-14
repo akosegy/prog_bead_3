@@ -5,6 +5,7 @@
 #include "numericwidget.hpp"
 #include "sudokupart.hpp"
 #include <vector>
+#include <functional>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ protected:
     virtual void _generate_columns(vector<Numeric *>);
     virtual void _generate_squares(vector<Numeric *>);
     virtual bool _handle_mistakes();
-    void _victory_func();
+    function<void()> _victory_func;
 public:
     Game(string, vector<int>, function<void()> victory_func);
     virtual void draw() override;

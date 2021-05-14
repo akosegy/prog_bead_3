@@ -6,7 +6,7 @@
 #include "openwindow.hpp"
 #include "stageswindow.hpp"
 #include "victoryscreen.hpp"
-#include <iostream>
+#include <fstream>
 #include <functional>
 
 using namespace genv;
@@ -24,11 +24,14 @@ Application::Application(){
                        [=](){set_window(STAGES);},
                        [=](){set_window(OPEN);},
                        [=](){stop();});
+
     _victory_screen = new Victory_window("Congratulations",
                                   [=](){set_window(STAGES);},
                                   [=](){stop();});
+
     _open_screen = new Open_window("Open screen",
                               [=](){start_game(_open_screen->get_textfield_text());});
+
     _stage_selector = new Stages_menu ("Stages",
                                   [=](){start_game(_stage_1_data);},
                                   [=](){start_game(_stage_2_data);},
