@@ -14,7 +14,7 @@ protected:
     Button * _exit_btn;
 
 public:
-    Victory_window(string title, Application parent);
+    Victory_window(string title, function<void()> menu_func, function<void()> exit_func);
     virtual void draw() override;
     virtual void handle(genv::event) override;
 };

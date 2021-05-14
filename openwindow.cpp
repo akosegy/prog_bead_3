@@ -10,12 +10,16 @@
 using namespace std;
 using namespace genv;
 
-Open_window::Open_window(string title, Application parent): Window(title, parent){
+Open_window::Open_window(string title, function<void()> submit_func): Window(title){
 
-    _textfield = new text(250, 50, 10, 50, "Please type the path here", true);
+    _textfield = new Text(250, 50, 10, 50, "Please type the path here", true);
 
     _submit_btn = new Button(50, 50, 270, 50, "Submit",
-                       [=](){_parent->start_game(_textfield->get_text()));});
+                       [=](){submit_func;});
+}
+
+string Open_window::get_textfield_text(){
+    return _textfield->get_text();
 }
 
 void Open_window::draw(){

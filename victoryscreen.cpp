@@ -9,22 +9,22 @@
 using namespace std;
 using namespace genv;
 
-Victory_window::Victory_window(string title, Application parent): Window(title, parent){
+Victory_window::Victory_window(string title, function<void()> menu_func, function<void()> exit_func): Window(title){
 
     _menu_btn = new Button(50, 50, 150, 70, "Menu",
-                       [=](){_parent->set_window(MENU);});
+                       [=](){menu_func;});
     _exit_btn = new Button(50, 50, 150, 130, "Exit",
-                       [=](){_parent->stop()});
+                       [=](){exit_func;});
 }
 
 void Victory_window::draw(){
     gout << color(255,255,255) << move_to(0,0)<< text(_title);
 
-    _textfield->draw();
-    _submit_btn->draw();
+    _menu_btn->draw();
+    _exit_btn->draw();
 }
 
 void Victory_window::handle(event ev){
-    _textfield->handle(ev);
-    _submit_btn->handle(ev);
+    _menu_btn->handle(ev);
+    _exit_btn->handle(ev);
 }

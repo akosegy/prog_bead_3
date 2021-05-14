@@ -10,16 +10,16 @@
 using namespace std;
 using namespace genv;
 
-Main_menu::Main_menu(string title, Application parent): Window(title, parent){
+Main_menu::Main_menu(string title, function<void()> stages_func, function<void()> open_func, function<void()> exit_func): Window(title){
 
     _stages_btn = new Button(50, 50, 100, 50, "Stages",
-                       [=](){_parent->set_window(STAGES);});
+                       [=](){stages_func();});
 
     _open_btn = new Button(50, 50, 100, 101, "Open file",
-                       [=](){_parent->set_window(OPEN);});
+                       [=](){open_func();});
 
     _exit_btn = new Button(50, 50, 100, 152, "Exit",
-                       [=](){_parent->stop();});
+                       [=](){exit_func();});
 }
 
 void Main_menu::draw(){

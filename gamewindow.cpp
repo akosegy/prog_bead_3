@@ -4,11 +4,12 @@
 #include "gamewindow.hpp"
 #include "graphics.hpp"
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 using namespace genv;
 
-Game::Game(string title, vector<int> data): Window(title){
+Game::Game(string title, vector<int> data, function<void()> victory_func): Window(title), _victory_func(victory_func){
     if (data.size() == 81){
         for (int i = 0; i < 9; i++){
             for (int j = 0; j < 9; j++){
@@ -53,7 +54,7 @@ void Game::_generate_rows(vector<Numeric *> data){
         _rows.push_back(new SPart(x, y, height, width, par));
     }
 }
-void Game::_generate_columns(vector<Numeric *>){
+void Game::_generate_columns(vector<Numeric *> data){
     int x;
     int y;
     int height;
@@ -74,7 +75,7 @@ void Game::_generate_columns(vector<Numeric *>){
     }
 }
 
-void Game::_generate_squares(vector<Numeric *>){
+void Game::_generate_squares(vector<Numeric *> data){
     int x;
     int y;
     int height;
@@ -84,7 +85,7 @@ void Game::_generate_squares(vector<Numeric *>){
         for (int field_row = 1; field_row < 4; field_row++){
             vector<Numeric *> par;
             for (int i = 0; i < 3; i++){
-                for (int j = 0; j < 3; j++{
+                for (int j = 0; j < 3; j++){
                     par.push_back(data[field_row * i * 3 + j + field_columns * 27]);
                 }
             }
@@ -98,7 +99,7 @@ void Game::_generate_squares(vector<Numeric *>){
     }
 }
 
-bool _handle_mistakes(){
+bool Game::_handle_mistakes(){
     vector<Numeric *> mistakes;
     for (int i = 0; i < 9; i++){
         mistakes.push_back(_rows[i]->check_data());
@@ -115,7 +116,7 @@ bool _handle_mistakes(){
     for(int i = 0; i < _cells.size(); i++){
         _cells[i]->set_color(0,0,0);
     }
-    if (mistakes.empty){
+    if (mistakes.empty()){
         return true;
     }else{
         for(int i = 0; i < mistakes.size(); i++){
@@ -139,13 +140,13 @@ void Game::handle(event ev){
     if (ev.type == ev_mouse) {
         if (ev.button == btn_left){
             if (_handle_mistakes()){
-                _parent->set_window(VICTORY);
+                _victory_func();
             }
         }
     }else if (ev.type == ev_key){
         if (ev.keycode == key_enter){
             if (_handle_mistakes()){
-                _parent->set_window(VICTORY);
+                _victory_func();
             }
         }
     }

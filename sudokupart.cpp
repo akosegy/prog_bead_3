@@ -1,6 +1,7 @@
 #include "numericwidget.hpp"
 #include "basewidget.hpp"
 #include "graphics.hpp"
+#include "sudokupart.hpp"
 #include <vector>
 #include <algorithm>
 
@@ -15,7 +16,7 @@ vector<Numeric *> SPart::check_data(){
     vector<Numeric *> wrongs;
 
     for (int i = 0; i < _data.size(); i++){
-        for (int j = _data.size()-(i+1); j > i); j--){
+        for (int j = _data.size()-(i+1); j > i; j--){
             if (_data[i]->get_saveable() == _data[j]->get_saveable()){
                 if (find(wrongs.begin(), wrongs.end(), _data[i]) == wrongs.end() ){
                     wrongs.push_back(_data[i]);

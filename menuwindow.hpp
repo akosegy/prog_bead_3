@@ -15,7 +15,7 @@ protected:
     Button * _open_btn;
     Button * _exit_btn;
 public:
-    Main_menu(string title, Application parent);
+    Main_menu(string title, function<void()> stages_func, function<void()> open_func, function<void()> exit_func);
     virtual void draw() override;
     virtual void handle(genv::event) override;
 };

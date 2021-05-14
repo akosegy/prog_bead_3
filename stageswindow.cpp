@@ -10,20 +10,16 @@
 using namespace std;
 using namespace genv;
 
-Stages_menu::Stages_menu(string title, Application parent): Window(title, parent){
-
-    _stage_1_data = "stage1.txt";
-    _stage_2_data = "stage2.txt";
-    _stage_3_data = "stage3.txt";
+Stages_menu::Stages_menu(string title, function<void()> stage_1_func, function<void()> stage_2_func, function<void()> stage_3_func): Window(title){
 
     _stage_1_btn = new Button(50, 50, 100, 50, "Stage 1",
-                       [=](){_btn_function->start_game(_stage_1_data);});
+                       [=](){stage_1_func;});
 
     _stage_2_btn = new Button(50, 50, 100, 101, "Stage 2",
-                       [=](){_parent->start_game(_stage_2_data);});
+                       [=](){stage_2_func;});
 
     _stage_3_btn = new Button(50, 50, 100, 152, "Stage 3",
-                       [=](){_parent->start_game(_stage_3_data);});
+                       [=](){stage_3_func;});
 }
 
 void Stages_menu::draw(){

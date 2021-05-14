@@ -1,18 +1,38 @@
 #include "graphics.hpp"
 #include "application.hpp"
+#include "basewindow.hpp"
 #include "menuwindow.hpp"
+#include "gamewindow.hpp"
+#include "openwindow.hpp"
+#include "stageswindow.hpp"
+#include "victoryscreen.hpp"
 #include <iostream>
+#include <functional>
 
 using namespace genv;
+using namespace std;
 
 Application::Application(){
     window_height = 400;
     window_width = 400;
 
-    _menu = new Main_menu("Main menu", this);
-    _victory_screen = new Victory("Congratulations", this);
-    _open_screen = new Opener("Open screen", this)
-    _stage_selector = new Stages ("Stages", this);
+    _stage_1_data = "stage1.txt";
+    _stage_2_data = "stage2.txt";
+    _stage_3_data = "stage3.txt";
+
+    _menu = new Main_menu("Main menu",
+                       [=](){set_window(STAGES);},
+                       [=](){set_window(OPEN);},
+                       [=](){stop();});
+    _victory_screen = new Victory_window("Congratulations",
+                                  [=](){set_window(STAGES);},
+                                  [=](){stop();});
+    _open_screen = new Open_window("Open screen",
+                              [=](){start_game(_open_screen->get_textfield_text());});
+    _stage_selector = new Stages_menu ("Stages",
+                                  [=](){start_game(_stage_1_data);},
+                                  [=](){start_game(_stage_2_data);},
+                                  [=](){start_game(_stage_3_data);});
 
     _present = _menu;
     _present->unhide();
@@ -34,51 +54,52 @@ void Application::run(){
 
 
 void Application::start_game(string file_name){
-    _active_game = new Game("Sudoku", _read_file_data(file_name));
-    present->hide(true);
-    present = _active_game;
-    present->hide(false);
+    _active_game = new Game("Sudoku", _read_file_data(file_name),
+                            [=](){set_window(VICTORY);});
+    _present->hide();
+    _present = _active_game;
+    _present->unhide();
 }
 
 vector<int> Application::_read_file_data(string file_name){
     vector<int> par;
-    ifstream save;
-    save.open(file_name);
+    ifstream saved;
+    saved.open(file_name);
 
-    while (save.good()){
+    while (saved.good()){
         int x;
-        save >> x;
-        par-push_back(x);
+        saved >> x;
+        par.push_back(x);
     }
 
-    retun par;
+    return par;
 }
 
 void Application::set_window(window_list new_window){
     switch(new_window){
         case MENU:
-            present->hide(true);
-            present = _menu;
-            present->hide(false);
+            _present->hide();
+            _present = _menu;
+            _present->unhide();
 
             break;
         case STAGES:
-            present->hide(true);
-            present = _stage_selector;
-            present->hide(false);
+            _present->hide();
+            _present = _stage_selector;
+            _present->unhide();
 
             break;
         case OPEN:
-            present->hide(true);
-            present = _open_screen;
-            present->hide(false);
+            _present->hide();
+            _present = _open_screen;
+            _present->unhide();
 
             break;
         case VICTORY:
-            present->hide(true);
+            _present->hide();
             delete _active_game;
-            present = _victory_screen;
-            present->hide(false);
+            _present = _victory_screen;
+            _present->unhide();
 
             break;
         default:

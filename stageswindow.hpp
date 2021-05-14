@@ -14,12 +14,8 @@ protected:
     Button * _stage_1_btn;
     Button * _stage_2_btn;
     Button * _stage_3_btn;
-
-    string _stage_1_data;
-    string _stage_2_data;
-    string _stage_3_data;
 public:
-    Stages_menu(string title, Application parent);
+    Stages_menu(string title, function<void()> stage_1_func, function<void()> stage_2_func, function<void()> stage_3_func);
     virtual void draw() override;
     virtual void handle(genv::event) override;
 };

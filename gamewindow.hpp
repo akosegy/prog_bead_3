@@ -19,8 +19,9 @@ protected:
     virtual void _generate_columns(vector<Numeric *>);
     virtual void _generate_squares(vector<Numeric *>);
     virtual bool _handle_mistakes();
+    void _victory_func();
 public:
-    Game(string, vector<int>);
+    Game(string, vector<int>, function<void()> victory_func);
     virtual void draw() override;
     virtual void handle(genv::event) override;
     virtual void wrong_data();
