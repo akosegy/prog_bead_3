@@ -8,7 +8,7 @@ protected:
     int _x, _y, _width, _height;
     bool _selected;
 public:
-    Widget(int, int, int, int);
+    Widget(int x, int y, int width, int height);
     virtual bool is_present(int, int);
     virtual void draw() = 0;
     virtual void handle(genv::event) = 0;

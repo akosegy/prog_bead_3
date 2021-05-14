@@ -3,9 +3,7 @@
 
 #include "buttonwidget.hpp"
 #include "basewindow.hpp"
-#include "dropdownwidget.hpp"
-#include "numericwidget.hpp"
-#include "textwidget.hpp"
+#include "application.hpp"
 #include <functional>
 #include <vector>
 
@@ -13,12 +11,11 @@ using namespace std;
 
 class Main_menu : public Window {
 protected:
-    Button * _btn_1;
-    Text * _text_in;
-
-    void _buttonfunction();
+    Button * _stages_btn;
+    Button * _open_btn;
+    Button * _exit_btn;
 public:
-    Main_menu(string);
+    Main_menu(string title, Application parent);
     virtual void draw() override;
     virtual void handle(genv::event) override;
 };

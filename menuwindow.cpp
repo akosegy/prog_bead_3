@@ -1,10 +1,8 @@
 #include "buttonwidget.hpp"
 #include "basewindow.hpp"
 #include "menuwindow.hpp"
-#include "numericwidget.hpp"
 #include "graphics.hpp"
-#include "dropdownwidget.hpp"
-#include "textwidget.hpp"
+#include "application.hpp"
 
 #include <functional>
 #include <vector>
@@ -12,24 +10,25 @@
 using namespace std;
 using namespace genv;
 
-Main_menu::Main_menu(string title): Window(title){
+Main_menu::Main_menu(string title, Application parent): Window(title, parent){
 
-    _btn_1 = new Button(50, 100, 100, 50, "Button",
-                       [this](){_buttonfunction();});
+    _stages_btn = new Button(50, 50, 100, 50, "Button",
+                       [=](){_parent->show_stages();});
 
-    _text_in = new Text(10, 10, 200, 50, "please type here", true);
-}
-
-void Main_menu::_buttonfunction(){
-    _btn_1->set_title(_text_in->get_text());
+    _open_btn = new Button(50, 50, 100, 50, "Button",
+                       [=](){_parent->open();});
+    _exit_btn = new Button(50, 50, 100, 50, "Button",
+                       [=](){_parent->stop();});
 }
 
 void Main_menu::draw(){
-    _btn_1->draw();
-    _text_in->draw();
+    _stages_btn->draw();
+    _open_btn->draw();
+    _exit_btn->draw();
 }
 
 void Main_menu::handle(event ev){
-    _btn_1->handle(ev);
-    _text_in->handle(ev);
+    _stages_btn->handle(ev);
+    _open_btn->handle(ev);
+    _exit_btn->handle(ev);
 }

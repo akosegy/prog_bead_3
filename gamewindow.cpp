@@ -13,8 +13,10 @@ Game::Game(string title, vector<int> data): Window(title){
         for (int i = 0; i < 9; i++){
             for (int j = 0; j < 9; j++){
                 Numeric * cell = new Numeric(0+j*40, 0+i*40, 40, 40, 0, 9, true);
+                if (data[i] != 0){
+                        cell->set_editable(false);
+                }
                 _cells.push_back(cell);
-
             }
         }
         _generate_rows(_cells);
@@ -137,13 +139,13 @@ void Game::handle(event ev){
     if (ev.type == ev_mouse) {
         if (ev.button == btn_left){
             if (_handle_mistakes()){
-                //victory();
+                _parent->victory();
             }
         }
     }else if (ev.type == ev_key){
         if (ev.keycode == key_enter){
             if (_handle_mistakes()){
-                //victory();
+                _parent->victory();
             }
         }
     }

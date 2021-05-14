@@ -1,9 +1,10 @@
 #include "graphics.hpp"
 #include "basewindow.hpp"
+#include "application.hpp"
 
 using namespace genv;
 
-Window::Window(string title): _title(title)
+Window::Window(string title, Application * parent): _title(title), _parent(parent)
 {
     _hidden = true;
 }

@@ -8,6 +8,7 @@ class Numeric : public Widget {
 protected:
     int _r, _g, _b;
     bool _hide_buttons;
+    bool _editable;
     int _buttonsize;
     int _counter;
     int _minimum;
@@ -25,6 +26,7 @@ public:
     virtual int get_saveable();
     virtual void set_color(int, int, int);
     virtual void set_value(int);
+    virtual void set_editable(bool);
 };
 
 

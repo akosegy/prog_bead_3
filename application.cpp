@@ -27,6 +27,15 @@ void Application::run(){
     }
 }
 
+
+
+void Application::start_game(vector<int>){
+}
+void Application::victory()
+void Application::activate_menu()
+void Application::show_stages()
+void Application::open()
+
 void Application::stop(){
     exit(0);
 }

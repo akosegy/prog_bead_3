@@ -7,6 +7,7 @@ using namespace genv;
 
 Numeric::Numeric(int x, int y,int width, int height,int minimum, int maximum, bool hide_buttons) : Widget(x, y, width, height), _minimum(minimum), _maximum(maximum), _hide_buttons(hide_buttons){
     int button_x = x + width - height/2;
+    _editable = true;
     string text_up;
     string text_down;
     _r = 255;
@@ -48,14 +49,21 @@ void Numeric::draw(){
     int text_pos_y;
     int back_r, back_g, back_b;
 
-    if(_selected){
+    if(!_editable){
         back_r = 0;
         back_g = 0;
         back_b = 0;
+        _r = 255;
+        _g = 255;
+        _b = 255;
+    }else if(_selected){
+        back_r = 255;
+        back_g = 255;
+        back_b = 255;
     }else{
-        back_r = 50;
-        back_g = 50;
-        back_b = 50;
+        back_r = 150;
+        back_g = 150;
+        back_b = 150;
     }
 
     ss << _counter;
@@ -101,6 +109,10 @@ void Numeric::set_value(int new_value){
     if (new_value >= _minimum && new_value <= _maximum){
         _counter = new_value;
     }
+}
+
+void Numeric::set_editable(bool par){
+    _editable = par;
 }
 
 void Numeric::handle(event ev){
