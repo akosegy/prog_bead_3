@@ -13,7 +13,7 @@ using namespace genv;
 Main_menu::Main_menu(string title, Application parent): Window(title, parent){
 
     _stages_btn = new Button(50, 50, 100, 50, "Stages",
-                       [=](){_parent->show_stages();});
+                       [=](){_parent->set_window(STAGES);});
 
     _open_btn = new Button(50, 50, 100, 101, "Open file",
                        [=](){_parent->set_window(OPEN);});

@@ -6,7 +6,6 @@
 #include "textwidget.hpp"
 
 #include <functional>
-#include <vector>
 
 using namespace std;
 using namespace genv;
@@ -15,7 +14,7 @@ Open_window::Open_window(string title, Application parent): Window(title, parent
 
     _textfield = new text(250, 50, 10, 50, "Please type the path here", true);
 
-    _submit_btn = new _submit_btn(50, 50, 270, 50, "Submit",
+    _submit_btn = new Button(50, 50, 270, 50, "Submit",
                        [=](){_parent->start_game(_textfield->get_text()));});
 }
 

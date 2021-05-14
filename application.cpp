@@ -9,10 +9,10 @@ Application::Application(){
     window_height = 400;
     window_width = 400;
 
-    _menu = new Main_menu("Main menu");
-    _victory_screen = new Victory("Congratulations");
-    _open_screen = new Opener("Open screen")
-    _stage_selector = new Stages ("Stages");
+    _menu = new Main_menu("Main menu", this);
+    _victory_screen = new Victory("Congratulations", this);
+    _open_screen = new Opener("Open screen", this)
+    _stage_selector = new Stages ("Stages", this);
 
     _present = _menu;
     _present->unhide();

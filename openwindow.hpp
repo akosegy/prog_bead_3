@@ -6,7 +6,6 @@
 #include "application.hpp"
 #include "textwidget.hpp"
 #include <functional>
-#include <vector>
 
 using namespace std;
 
