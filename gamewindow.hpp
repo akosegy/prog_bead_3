@@ -11,6 +11,7 @@ using namespace std;
 
 class Game : public Window {
 protected:
+    bool _wrong_data;
     vector<Numeric *> _cells;
     vector<SPart *> _rows;
     vector<SPart *> _columns;
@@ -23,12 +24,10 @@ protected:
     function<void()> _victory_func;
 public:
     Game(string, vector<int>, function<void()> victory_func);
-    virtual ~Game();
+    //virtual ~Game();
     virtual void draw() override;
     virtual void handle(genv::event) override;
-    virtual void wrong_data();
-
-
+    virtual bool check_nulls();
 };
 
 #endif // GAMEWINDOW_HPP_INCLUDED

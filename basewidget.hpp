@@ -16,7 +16,8 @@ public:
     virtual void deselect();
     virtual int get_x();
     virtual int get_y();
-
+    virtual int get_width();
+    virtual int get_height();
 };
 
 #endif // BASEWIDGET_HPP_INCLUDED

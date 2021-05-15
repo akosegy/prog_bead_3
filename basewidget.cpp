@@ -27,3 +27,11 @@ int Widget::get_x(){
 int Widget::get_y(){
     return _y;
 }
+
+int Widget::get_width(){
+    return _width;
+}
+
+int Widget::get_height(){
+    return _height;
+}

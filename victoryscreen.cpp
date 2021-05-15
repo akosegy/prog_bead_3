@@ -10,9 +10,9 @@ using namespace genv;
 
 Victory_window::Victory_window(string title, function<void()> menu_func, function<void()> exit_func): Window(title){
 
-    _menu_btn = new Button(50, 50, 150, 70, "Menu",
+    _menu_btn = new Button(50, 70, 150, 50, "Menu",
                        [=](){menu_func();});
-    _exit_btn = new Button(50, 50, 150, 130, "Exit",
+    _exit_btn = new Button(50, 130, 150, 50, "Exit",
                        [=](){exit_func();});
 }
 

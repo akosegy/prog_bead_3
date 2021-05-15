@@ -57,7 +57,8 @@ void Application::run(){
 
 
 void Application::start_game(string file_name){
-    _active_game = new Game("Sudoku", _read_file_data(file_name),
+    vector<int> data = _read_file_data(file_name);
+    _active_game = new Game("Sudoku", data,
                             [=](){set_window(VICTORY);});
     _present->hide();
     _present = _active_game;

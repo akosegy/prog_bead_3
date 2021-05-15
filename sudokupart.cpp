@@ -3,7 +3,6 @@
 #include "graphics.hpp"
 #include "sudokupart.hpp"
 #include <vector>
-#include <algorithm>
 
 using namespace genv;
 using namespace std;
@@ -22,21 +21,24 @@ vector<Numeric *> SPart::check_data(){
     vector<Numeric *> wrongs;
 
     for (int i = 0; i < _data.size(); i++){
-        for (int j = _data.size()-(i+1); j > i; j--){
-            if (_data[i]->get_saveable() == _data[j]->get_saveable()){
-                if (find(wrongs.begin(), wrongs.end(), _data[i]) == wrongs.end() ){
-                    wrongs.push_back(_data[i]);
-                }
-                if (find(wrongs.begin(), wrongs.end(), _data[j]) == wrongs.end()){
-                    wrongs.push_back(_data[j]);
+        for (int j = 0; j < _data.size(); j++){
+            if(i!=j){
+                if((_data[i]->get_saveable() != 0) && (_data[j]->get_saveable() != 0)){
+                    if (_data[i]->get_saveable() == _data[j]->get_saveable()){
+                        wrongs.push_back(_data[j]);
+                        wrongs.push_back(_data[i]);
+                    }
                 }
             }
+
         }
     }
     return wrongs;
 }
 
 void SPart::draw(){
+    gout << move_to(_x, _y)<< color(0,0,0)  << box(_width, _height);
+    gout << move_to(_x+2, _y+2)<< color(100,100,100)  << box(_width-4, _height-4);
 }
 
 void SPart::handle(event ev){
