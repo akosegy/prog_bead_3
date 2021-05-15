@@ -42,10 +42,6 @@ public:
     Application();
     virtual void run();
     virtual void start_game(string file_name);
-    virtual void victory();
-    virtual void activate_menu();
-    virtual void show_stages();
-    virtual void open();
     virtual void stop();
     virtual void set_window(window_list new_window);
 };

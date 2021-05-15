@@ -2,7 +2,6 @@
 #include "basewindow.hpp"
 #include "openwindow.hpp"
 #include "graphics.hpp"
-#include "application.hpp"
 #include "textwidget.hpp"
 
 #include <functional>
@@ -12,9 +11,9 @@ using namespace genv;
 
 Open_window::Open_window(string title, function<void()> submit_func): Window(title){
 
-    _textfield = new Text(250, 50, 10, 50, "Please type the path here", true);
+    _textfield = new Text(10, 50, 250, 50, "Please type the path here", true);
 
-    _submit_btn = new Button(50, 50, 270, 50, "Submit",
+    _submit_btn = new Button(270, 50, 50, 50, "Submit",
                        [=](){submit_func();});
 }
 

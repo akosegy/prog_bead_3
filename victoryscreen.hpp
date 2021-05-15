@@ -3,7 +3,6 @@
 
 #include "buttonwidget.hpp"
 #include "basewindow.hpp"
-#include "application.hpp"
 #include <functional>
 
 using namespace std;

@@ -2,7 +2,6 @@
 #include "basewindow.hpp"
 #include "menuwindow.hpp"
 #include "graphics.hpp"
-#include "application.hpp"
 
 #include <functional>
 #include <vector>
@@ -15,10 +14,10 @@ Main_menu::Main_menu(string title, function<void()> stages_func, function<void()
     _stages_btn = new Button(50, 50, 100, 50, "Stages",
                        [=](){stages_func();});
 
-    _open_btn = new Button(50, 50, 100, 101, "Open file",
+    _open_btn = new Button(50, 101, 100, 50, "Open file",
                        [=](){open_func();});
 
-    _exit_btn = new Button(50, 50, 100, 152, "Exit",
+    _exit_btn = new Button(50, 152, 100, 50, "Exit",
                        [=](){exit_func();});
 }
 

@@ -23,6 +23,7 @@ protected:
     function<void()> _victory_func;
 public:
     Game(string, vector<int>, function<void()> victory_func);
+    virtual ~Game();
     virtual void draw() override;
     virtual void handle(genv::event) override;
     virtual void wrong_data();

@@ -2,7 +2,6 @@
 #include "basewindow.hpp"
 #include "victoryscreen.hpp"
 #include "graphics.hpp"
-#include "application.hpp"
 
 #include <functional>
 

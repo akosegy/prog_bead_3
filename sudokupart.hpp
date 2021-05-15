@@ -13,6 +13,7 @@ protected:
 
 public:
     SPart(int, int, int, int, vector<Numeric *>);
+    virtual ~SPart();
     virtual void draw() override;
     virtual void handle(genv::event) override;
     virtual vector<Numeric *> check_data();

@@ -12,6 +12,12 @@ SPart::SPart(int x, int y, int height, int width, vector<Numeric *> data): Widge
 
 }
 
+SPart::~SPart(){
+    for (int i = _data.size()-1; i > -1; i--){
+        delete _data[i];
+    }
+}
+
 vector<Numeric *> SPart::check_data(){
     vector<Numeric *> wrongs;
 
@@ -28,6 +34,9 @@ vector<Numeric *> SPart::check_data(){
         }
     }
     return wrongs;
+}
+
+void SPart::draw(){
 }
 
 void SPart::handle(event ev){

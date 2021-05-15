@@ -2,7 +2,6 @@
 #include "basewindow.hpp"
 #include "stageswindow.hpp"
 #include "graphics.hpp"
-#include "application.hpp"
 
 #include <functional>
 #include <vector>
@@ -15,10 +14,10 @@ Stages_menu::Stages_menu(string title, function<void()> stage_1_func, function<v
     _stage_1_btn = new Button(50, 50, 100, 50, "Stage 1",
                        [=](){stage_1_func();});
 
-    _stage_2_btn = new Button(50, 50, 100, 101, "Stage 2",
+    _stage_2_btn = new Button(50, 101, 100, 50, "Stage 2",
                        [=](){stage_2_func();});
 
-    _stage_3_btn = new Button(50, 50, 100, 152, "Stage 3",
+    _stage_3_btn = new Button(50, 152, 100, 50, "Stage 3",
                        [=](){stage_3_func();});
 }
 

@@ -29,6 +29,18 @@ Game::Game(string title, vector<int> data, function<void()> victory_func): Windo
     }
 }
 
+Game::~Game(){
+    for (int i = 8; i > -1; i--){
+        delete _rows[i];
+        delete _columns[i];
+        delete _squares[i];
+    }
+
+    for (int i = _cells.size()-1; i > -1; i--){
+        delete _cells[i];
+    }
+}
+
 void Game::wrong_data(){
     gout << color(255,0,0) << move_to(0, 0) << box(100,50);
     gout << color(0,0,0) << move_to(10, 10) << text("wrong input data");
